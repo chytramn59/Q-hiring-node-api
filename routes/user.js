@@ -9,7 +9,7 @@ const User = require('../models/user');
 const { body } = require('express-validator/check');
 
 
-router.post('/singup',[
+router.post('/signup',[
     body('firstname').trim().not().isEmpty(),
     body('lastname').trim().not().isEmpty(),
     body('email').isEmail().withMessage('please enter valid email')

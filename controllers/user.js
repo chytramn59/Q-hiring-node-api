@@ -69,14 +69,11 @@ exports.login = (req, res, next) => {
                 throw error;
             }
             loadedUser = user;
-            bcrypt.hash(password, 12)
-                .then(hashedPw => {
-                    if (!bcrypt.compare(hashedPw, user.password)) {
+                    if (!bcrypt.compare(password, user.password)) {
                         const error = new Error('wrong password');
                         error.statusCode = 401;
                         throw error;
                     }
-                });
 
             const token = jwt.sign(
                 {
