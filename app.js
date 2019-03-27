@@ -8,6 +8,8 @@ const config = require('./config');
 
 const uesrRoutes = require('./routes/user');
 
+const questionRoutes = require('./routes/questions');
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended : true}));//form data
@@ -25,6 +27,7 @@ app.use((req, res, next) => {
   });
   
 app.use('/api/user',uesrRoutes);
+app.use('/api/question',questionRoutes);
 
 app.use((error,req,res,next)=>{
     console.log(error);
