@@ -15,12 +15,12 @@ app.use(bodyParser.json());//application/json
 
 //cors headers settings
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
       'Access-Control-Allow-Methods',
       'OPTIONS, GET, POST, PUT, PATCH, DELETE'
     );
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
   });
   
@@ -36,7 +36,7 @@ app.use((error,req,res,next)=>{
 })
 
 mongoose.connect(config.database);
- var port = process.env.Port || 8080; //normal db connection
+ var port = process.env.Port || 8000; //normal db connection
 
 app.listen(port,function(){
     console.log('connected succesfully!',port) 
