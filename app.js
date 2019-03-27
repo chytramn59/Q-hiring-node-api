@@ -10,6 +10,8 @@ const uesrRoutes = require('./routes/user');
 
 const questionRoutes = require('./routes/questions');
 
+const optionRoutes = require('./routes/options');
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended : true}));//form data
@@ -28,6 +30,7 @@ app.use((req, res, next) => {
   
 app.use('/api/user',uesrRoutes);
 app.use('/api/question',questionRoutes);
+app.use('/api/option',optionRoutes);
 
 app.use((error,req,res,next)=>{
     console.log(error);

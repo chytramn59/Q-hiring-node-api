@@ -4,8 +4,10 @@ const router = express.Router();
 
 const questionsControllers = require('../controllers/questions');
 
-router.get('/getAll',questionsControllers.getAll);
+const isAuth = require('../middleware/is-Auth');
 
-router.post('/add',questionsControllers.postQuestion);
+router.get('/getAll',isAuth,questionsControllers.getAll);
+
+router.post('/add',isAuth,questionsControllers.postQuestion);
 
 module.exports = router;
