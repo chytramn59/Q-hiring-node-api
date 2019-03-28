@@ -5,7 +5,7 @@ const Answers = require('../models/options');
 
 
 exports.getById = (req,res,next) =>{
-    Answers.findById({_id: req.params._id}).populate(' question')
+    Answers.findById({_id: req.params._id}).populate(' questionid')
     .then(result =>{
         res.status(200).json({
             message: 'get a single options',
@@ -27,11 +27,11 @@ exports.add = (req,res,next) =>{
         return res.status(422).json({ errors: errors.array() });
     }
    const anstext = req.body.anstext;
-   const question = req.body.question;
+   const questionid = req.body.questionid;
    const isValid = req.body.isValid;
    const ans = new Answers({
         anstext:anstext,
-        question:question,
+        questionid:questionid,
         isValid:isValid
    })
    ans.save()
@@ -51,7 +51,7 @@ exports.add = (req,res,next) =>{
 }
 
 exports.getbyquestionid = (req,res,next) =>{
-    Answers.find().populate({path: 'question',match:{_id:req.params.qid}})
+    Answers.find().populate({path: 'questionid',match:{_id:req.params.qid}})
     .then(result =>{
         res.status(200).json({
             message: 'all  options',

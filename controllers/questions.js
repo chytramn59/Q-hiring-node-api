@@ -23,7 +23,7 @@ exports.getAllwithoptions = (req, res, next) => {
         $lookup: {
             from: "answers",
             localField: "_id",
-            foreignField: 'question',
+            foreignField: 'questionid',
             as: "answers"
         }
     }])
