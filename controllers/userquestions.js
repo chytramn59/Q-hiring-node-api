@@ -1,6 +1,3 @@
-const Questions = require('../models/questions');
-
-const Answers = require('../models/options');
 
 const Userquestion = require('../models/userquestions');
 
