@@ -42,7 +42,7 @@ app.use((error,req,res,next)=>{
 })
 
 mongoose.connect(config.database);
- var port = process.env.Port || 8000; //normal db connection
+ var port = process.env.Port || 8080; //normal db connection
 
 app.listen(port,function(){
     console.log('connected succesfully!',port) 
