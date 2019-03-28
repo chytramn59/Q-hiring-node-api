@@ -5,7 +5,7 @@ const Answers = require('../models/options');
 
 
 exports.getById = (req,res,next) =>{
-    Answers.findById({_id: req.params._id}).populate(' questionid')
+    Answers.findById({_id: req.params._id}).populate('questionid')
     .then(result =>{
         res.status(200).json({
             message: 'get a single options',
@@ -51,7 +51,7 @@ exports.add = (req,res,next) =>{
 }
 
 exports.getbyquestionid = (req,res,next) =>{
-    Answers.find().populate({path: 'questionid',match:{_id:req.params.qid}})
+    Answers.find({questionid:{$in:req.params.qid}}).populate('questionid')
     .then(result =>{
         res.status(200).json({
             message: 'all  options',
