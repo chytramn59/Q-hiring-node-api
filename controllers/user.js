@@ -16,6 +16,8 @@ exports.singup = (req, res, next) => {
         // throw error;
         return res.status(422).json({ errors: errors.array() });
     }
+
+    // const { firstname,  } = req.body;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const email = req.body.email;

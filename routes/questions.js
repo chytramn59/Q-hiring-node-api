@@ -12,6 +12,9 @@ router.get('/getAllwithoptions',isAuth,questionsControllers.getAllwithoptions);
 
 router.post('/add',isAuth,questionsControllers.postQuestion);
 
+
+router.post('/addq',questionsControllers.postQuestionwithoptions);
+
 router.get('/getquestionById/:_id',isAuth,questionsControllers.getquestionById);
 
 module.exports = router;

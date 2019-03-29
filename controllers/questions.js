@@ -2,6 +2,8 @@ const { validationResult } = require('express-validator/check');
 
 const Questions = require('../models/questions');
 
+const Options = require('../models/options');
+
 exports.getAll = (req, res, next) => {
     Questions.find()
         .then(result => {
@@ -97,3 +99,61 @@ exports.getquestionById = (req, res, next) => {
             next(err);
         })
 }
+
+exports.postQuestionwithoptions = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+    const questtext = req.body.questtext;
+    const createdBy = req.body.createdBy;
+    const optionarray = req.body.optiondata;
+    const quest = new Questions({
+        questtext: questtext,
+        createdBy: createdBy
+    })
+    quest.save()
+        .then(result => {
+            console.log(result._id);
+            if(optionarray.length > 0){
+                var resinc = 0;
+                optionarray.forEach(element => {
+                    const option = new Options({
+                        anstext:element.anstext,
+                        questionid:result._id,
+                        isValid:element.isValid
+                   })
+                   option.save()
+                   .then(result =>{
+                    resinc=resinc+1;
+                    if(resinc == optionarray.length){
+                    res.status(200).json({
+                        message: 'question and there options are entered succesfully',
+                        result:result
+                        
+                    })
+                }
+                   })
+                   .catch(err => {
+                    if (!err.statusCode) {
+                        err.statusCode = 500;
+                    }
+                    next(err);
+                })
+
+                });
+            }
+            
+            
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        })
+
+}
+
+
+
