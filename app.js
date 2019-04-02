@@ -14,6 +14,8 @@ const optionRoutes = require('./routes/options');
 
 const userquestionRoutes = require('./routes/userquestions');
 
+const groupRoutes = require('./routes/groups');
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended : true}));//form data
@@ -34,6 +36,7 @@ app.use('/api/user',uesrRoutes);
 app.use('/api/question',questionRoutes);
 app.use('/api/option',optionRoutes);
 app.use('/api/userquestions',userquestionRoutes);
+app.use('/api/group',groupRoutes);
 
 app.use((error,req,res,next)=>{
     console.log(error);
@@ -45,7 +48,7 @@ app.use((error,req,res,next)=>{
 })
 
 mongoose.connect(config.database);
- var port = process.env.Port || 8080; //normal db connection
+ var port = process.env.Port || 8090; //normal db connection
 
 app.listen(port,function(){
     console.log('connected succesfully!',port) 

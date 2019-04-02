@@ -4,6 +4,8 @@ const Questions = require('../models/questions');
 
 const Options = require('../models/options');
 
+
+
 exports.getAll = (req, res, next) => {
     Questions.find()
         .then(result => {
@@ -50,9 +52,11 @@ exports.postQuestion = (req, res, next) => {
     }
     const questtext = req.body.questtext;
     const createdBy = req.body.createdBy;
+    const groupid = req.body.groupid;
     const quest = new Questions({
         questtext: questtext,
-        createdBy: createdBy
+        createdBy: createdBy,
+        groupid:groupid
     })
     quest.save()
         .then(result => {
@@ -71,19 +75,6 @@ exports.postQuestion = (req, res, next) => {
 }
 
 exports.getquestionById = (req, res, next) => {
-    // Questions.aggregate(
-    //     [
-    //          { $match : { _id : "5c9c4d34aa89eb1269e4081e" } },
-    //       { $lookup: 
-    //         { 
-    //             from: "answers",
-    //             localField: "_id",
-    //             foreignField: 'question',
-    //             as: "answers"
-    //           } 
-    //         }
-    //     ]
-    //     )
     Questions.findById({_id:req.params._id})
         .then(result => {
             console.log(req.params._id);

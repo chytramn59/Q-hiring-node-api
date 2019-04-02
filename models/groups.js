@@ -2,14 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const questionSchema = new Schema({
-    questtext:{
+const groupSchema = new Schema({
+    groupname:{
         type:String,
-        required:true
-    },
-    groupid:{
-        type:Schema.Types.ObjectId,
-        ref:'Group',
         required:true
     },
     createdDate:{
@@ -32,7 +27,7 @@ const questionSchema = new Schema({
         type:Boolean,
         default:false
     },
-    
+
 });
 
-module.exports = mongoose.model('Question',questionSchema);
+module.exports = mongoose.model('Group',groupSchema);

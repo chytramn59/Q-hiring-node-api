@@ -10,7 +10,7 @@ router.get('/getAll',isAuth,questionsControllers.getAll);
 
 router.get('/getAllwithoptions',isAuth,questionsControllers.getAllwithoptions);
 
-router.post('/add',isAuth,questionsControllers.postQuestion);
+router.post('/add',questionsControllers.postQuestion);
 
 
 router.post('/addq',questionsControllers.postQuestionwithoptions);
