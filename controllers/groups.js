@@ -62,9 +62,6 @@ exports.getall = (req,res,next) =>{
             questions:{$push: "$questions"}
         }
     }
-            
-        
-        
 
     ])
     .then(result =>{
