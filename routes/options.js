@@ -8,7 +8,7 @@ const isAuth = require('../middleware/is-Auth');
 
 router.get('/getById/:_id',isAuth,optionsControllers.getById);
 
-router.post('/add',isAuth,optionsControllers.add);
+router.post('/add',optionsControllers.add);
 
 router.get('/getbyquestionid/:qid',isAuth,optionsControllers.getbyquestionid);
 

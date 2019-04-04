@@ -49,7 +49,7 @@ exports.getall = (req,res,next) =>{
         {
         $lookup:{
             from: "options",
-            localField: "_id",
+            localField: "questions._id",
             foreignField: 'questionid',
             as: "questions.options"
 

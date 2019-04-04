@@ -1,11 +1,11 @@
 const { validationResult } = require('express-validator/check');
 
-const Answers = require('../models/options');
+const Options = require('../models/options');
 
 
 
 exports.getById = (req,res,next) =>{
-    Answers.findById({_id: req.params._id}).populate('questionid')
+    Options.findById({_id: req.params._id}).populate('questionid')
     .then(result =>{
         res.status(200).json({
             message: 'get a single options',
@@ -29,7 +29,7 @@ exports.add = (req,res,next) =>{
    const anstext = req.body.anstext;
    const questionid = req.body.questionid;
    const isValid = req.body.isValid;
-   const ans = new Answers({
+   const ans = new Options({
         anstext:anstext,
         questionid:questionid,
         isValid:isValid
@@ -51,7 +51,7 @@ exports.add = (req,res,next) =>{
 }
 
 exports.getbyquestionid = (req,res,next) =>{
-    Answers.find({questionid:{$in:req.params.qid}}).populate('questionid')
+    Options.find({questionid:{$in:req.params.qid}}).populate('questionid')
     .then(result =>{
         res.status(200).json({
             message: 'all  options',

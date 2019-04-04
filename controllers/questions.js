@@ -25,10 +25,10 @@ exports.getAll = (req, res, next) => {
 exports.getAllwithoptions = (req, res, next) => {
     Questions.aggregate([{
         $lookup: {
-            from: "answers",
+            from: "options",
             localField: "_id",
             foreignField: 'questionid',
-            as: "answers"
+            as: "options"
         }
     }])
         .then(result => {
@@ -98,10 +98,12 @@ exports.postQuestionwithoptions = (req, res, next) => {
     }
     const questtext = req.body.questtext;
     const createdBy = req.body.createdBy;
+    const groupid = req.body.groupid;
     const optionarray = req.body.optiondata;
     const quest = new Questions({
         questtext: questtext,
-        createdBy: createdBy
+        createdBy: createdBy,
+        groupid:groupid
     })
     quest.save()
         .then(result => {
