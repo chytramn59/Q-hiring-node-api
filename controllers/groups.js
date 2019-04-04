@@ -54,8 +54,19 @@ exports.getall = (req,res,next) =>{
             as: "questions.options"
 
         }
+    },
+    {
+        $group:{
+            _id:"$_id",
+            name:{$first: "$groupname"},
+            questions:{$push: "$questions"}
+        }
+    }
+            
+        
+        
 
-    }])
+    ])
     .then(result =>{
         res.status(200).json({
             message:'grops and questiom',
