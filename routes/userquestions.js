@@ -6,8 +6,8 @@ const userquestionsControllers = require('../controllers/userquestions');
 
 const isAuth = require('../middleware/is-Auth');
 
-router.get('/getuserid/:id',isAuth,userquestionsControllers.getuserid);
+router.get('/getuserid/:id',userquestionsControllers.getuserid);
 
-router.post('/addall',isAuth,userquestionsControllers.addall);
+router.post('/addall',userquestionsControllers.addall);
 
 module.exports = router;

@@ -15,7 +15,7 @@ const userquestionSchema = new Schema({
     },
     optionid:{
         type:Schema.Types.ObjectId,
-        ref:'Answer',
+        ref:'Options',
         required:true
     }
 
